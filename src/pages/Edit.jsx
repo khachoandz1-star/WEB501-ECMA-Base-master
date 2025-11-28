@@ -20,7 +20,7 @@ function Edit() {
   useEffect(() => {
     axios.get(`${API}/tours/${+id}`)
       .then((res) => {
-        const t = res.data;
+        const t = res.data; //đổ dữ liệu cũ vào form
         setName(t.name ?? "");
         setDestination(t.destination ?? "");
         setDuration(t.duration ?? "");
