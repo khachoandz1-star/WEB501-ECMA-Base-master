@@ -1,102 +1,68 @@
-function Add() {
+import { useState } from "react";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
+
+export default function Add() {
+  const API = "http://localhost:3000";
+
+  const [name, setName] = useState("");
+  const [destination, setDestination] = useState("");
+  const [duration, setDuration] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [available, setAvailable] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`${API}/tours`, {
+        name,
+        destination,
+        duration,
+        price: Number(price),
+        description,
+        available: Number(available),
+      })
+      .then((res) => {   // ← SỬA DÒNG NÀY: thêm (res) vào
+        toast.success("Thêm tour thành công!");
+        setName("");
+        setDestination("");
+        setDuration("");
+        setPrice("");
+        setDescription("");
+        setAvailable("");
+      })
+      .catch(() => {
+        
+        toast.error("Lỗi! Kiểm tra server hoặc dữ liệu");
+      });
+  };
+
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-semibold mb-6">Thêm mới</h1>
+    <div className="p-8 max-w-xl mx-auto">
+      <h1 className="text-3xl font-bold text-center mb-8">Thêm Tour Mới</h1>
 
-      <form className="space-y-6">
-        {/* Text input */}
-        <div>
-          <label htmlFor="text" className="block font-medium mb-1">
-            Text
-          </label>
-          <input
-            type="text"
-            id="text"
-            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input required placeholder="Tên tour" value={name} onChange={(e) => setName(e.target.value)} className="w-full border p-3 rounded" />
+        <input required placeholder="Điểm đến" value={destination} onChange={(e) => setDestination(e.target.value)} className="w-full border p-3 rounded" />
+        <input placeholder="Thời gian" value={duration} onChange={(e) => setDuration(e.target.value)} className="w-full border p-3 rounded" />
+        <input required type="number" placeholder="Giá tiền" value={price} onChange={(e) => setPrice(e.target.value)} className="w-full border p-3 rounded" />
+        <input placeholder="Mô tả" value={description} onChange={(e) => setDescription(e.target.value)} className="w-full border p-3 rounded" />
+        <input required type="number" placeholder="Số chỗ" value={available} onChange={(e) => setAvailable(e.target.value)} className="w-full border p-3 rounded" />
+
+        <div className="flex gap-3">
+          <button type="submit" className="flex-1 bg-blue-600 text-white p-3 rounded font-bold hover:bg-blue-700">
+            Thêm Ngay
+          </button>
+          <Link to="/list" className="flex-1 text-center bg-gray-600 text-white p-3 rounded font-bold hover:bg-gray-700">
+            Quay Lại
+          </Link>
         </div>
-
-        {/* Checkbox list */}
-        <div>
-          <label className="block font-medium mb-1">Radio</label>
-
-          <div className="flex items-center space-x-2 mb-2">
-            <input
-              type="checkbox"
-              id="flexCheck1"
-              className="h-4 w-4 text-blue-600 rounded border-gray-300"
-            />
-            <label htmlFor="flexCheck1" className="text-gray-700">
-              checkbox 1
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="checkbox"
-              id="flexCheck2"
-              className="h-4 w-4 text-blue-600 rounded border-gray-300"
-            />
-            <label htmlFor="flexCheck2" className="text-gray-700">
-              checkbox 2
-            </label>
-          </div>
-        </div>
-
-        {/* Radio list */}
-        <div>
-          <label className="block font-medium mb-1">Checkbox</label>
-
-          <div className="flex items-center space-x-2 mb-2">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio1"
-              className="h-4 w-4 text-blue-600"
-            />
-            <label htmlFor="flexRadio1" className="text-gray-700">
-              Checkbox 1
-            </label>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <input
-              type="radio"
-              name="flexRadioDefault"
-              id="flexRadio2"
-              className="h-4 w-4 text-blue-600"
-            />
-            <label htmlFor="flexRadio2" className="text-gray-700">
-              Checkbox 2
-            </label>
-          </div>
-        </div>
-
-        {/* Select */}
-        <div>
-          <label htmlFor="selectOption" className="block font-medium mb-1">
-            Select - option
-          </label>
-          <select
-            id="selectOption"
-            className="w-full border rounded-lg px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-
-        {/* Submit button */}
-        <button
-          type="submit"
-          className="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
-        >
-          Submit
-        </button>
       </form>
+
+      <Toaster position="top-center" />
     </div>
   );
 }
-
-export default Add;

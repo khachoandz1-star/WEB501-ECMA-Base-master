@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const API = "http://localhost:3001";
+const API = "http://localhost:3000";
 
+{/* Hiển thị*/}
 function List() {
   const [tours, setTours] = useState([]);
 
@@ -19,6 +21,20 @@ function List() {
       });
   }, []);
 
+{/* Xóa*/}
+  const Delete = (id) =>{
+    if(confirm("Bạn có muốn xóa tour này không ?")){
+      axios.delete(`${API}/tours/${id}`)
+      .then(()=>{
+        setTours(tours.filter(tour => tour.id == !id));
+        toast.success("Xóa thành công");
+      })
+      .catch(()=>{
+        toast.error("Xóa không thành công");
+      });
+    };
+  };
+
   return (
     <div className="p-6">
       <h1 className="text-2xl font-semibold mb-6">Danh sách Tour</h1>
@@ -33,6 +49,8 @@ function List() {
               <th className="px-4 py-2 border border-gray-300 text-left">Thời gian</th>
               <th className="px-4 py-2 border border-gray-300 text-right">Giá</th>
               <th className="px-4 py-2 border border-gray-300 text-center">Còn lại</th>
+               <th className="px-4 py-2 border border-gray-300 text-center">Hành động</th>
+            
             </tr>
           </thead>
 
@@ -53,6 +71,10 @@ function List() {
                 <td className="px-4 py-2 border border-gray-300 text-center">
                   {tour.available} chỗ
                 </td>
+                <td className="px-4 py-2 border border-gray-300 text-center">
+                <button onClick={() =>Delete(tour.id)}>Xóa</button>  {/*Nút xóa thêm hàm onclick */}
+                </td>
+
               </tr>
             ))}
           </tbody> {/*Lỗi dấu tbody → đã sửa đúng rồi nha bạn!*/}
