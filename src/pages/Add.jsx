@@ -3,7 +3,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
 
-export default function Add() {
+function Add() {
   const API = "http://localhost:3000";
 
   const [name, setName] = useState("");
@@ -66,3 +66,4 @@ export default function Add() {
     </div>
   );
 }
+export default Add;

@@ -5,10 +5,10 @@ import { Link, useParams } from "react-router-dom";
 
 const API = "http://localhost:3000";
 
-export default function Edit() {
+function Edit() {
   const { id } = useParams(); // id là chuỗi: "1", "2"...
 
-  // Giống hệt trang Add của bạn – bạn thích kiểu này
+ 
   const [name, setName] = useState("");
   const [destination, setDestination] = useState("");
   const [duration, setDuration] = useState("");
@@ -78,3 +78,4 @@ export default function Edit() {
     </div>
   );
 }
+export default Edit;
