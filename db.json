@@ -11,13 +11,21 @@
       "available": 20
     },
     {
-      "name": "hohohoo",
-      "destination": "kekekek",
-      "duration": "51h",
+      "name": "jehehe",
+      "destination": "lfekfeokfoe",
+      "duration": "23j",
       "price": 1000005654,
       "description": "xấu",
       "available": 50,
       "id": 3
+    }
+  ],
+  "users": [
+    {
+      "email": "khachoandz1@gmail.com",
+      "password": "$2a$10$Q4oZnwYUC/1L/l9zHdBFF.J.bnS3MZR9KlaCvJn9jiEMVySppycL.",
+      "username": "khachoandz1",
+      "id": 1
     }
   ]
 }

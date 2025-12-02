@@ -3,6 +3,8 @@ import { Route, Routes, Link } from "react-router-dom";
 import List from "./pages/List";
 import Add from "./pages/Add";
 import Edit from "./pages/Edit";
+import Signup from "./pages/Signup";
+import Signin from "./pages/Signin";
 
 function App() {
   return (
@@ -26,10 +28,10 @@ function App() {
           </div>
 
           <div className="hidden md:flex items-center space-x-6">
-            <Link to="/login" className="hover:text-gray-200">
+            <Link to="/signin" className="hover:text-gray-200">
               Đăng nhập
             </Link>
-            <Link to="/register" className="hover:text-gray-200">
+            <Link to="/signup" className="hover:text-gray-200">
               Đăng ký
             </Link>
           </div>
@@ -44,6 +46,8 @@ function App() {
           <Route path="/list" element={<List />} />
           <Route path="/add" element={<Add/>} />
           <Route path="/edit/:id" element={<Edit/>} />  {/*Thêm id*/}
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
 
         </Routes>
       </div>
