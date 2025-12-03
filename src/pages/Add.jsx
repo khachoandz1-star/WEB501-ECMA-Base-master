@@ -1,10 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Add() {
   const API = "http://localhost:3000";
+  
 
   const [name, setName] = useState("");
   const [destination, setDestination] = useState("");
@@ -33,6 +34,7 @@ function Add() {
         setPrice("");
         setDescription("");
         setAvailable("");
+       
       })
       .catch(() => {
         

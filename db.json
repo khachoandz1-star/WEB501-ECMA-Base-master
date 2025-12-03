@@ -11,13 +11,22 @@
       "available": 20
     },
     {
-      "name": "jehehe",
-      "destination": "lfekfeokfoe",
-      "duration": "23j",
-      "price": 1000005654,
-      "description": "xấu",
-      "available": 50,
+      "name": "jfeifjief",
+      "destination": "gregeg",
+      "duration": "8485h",
+      "price": 858498498,
+      "description": "ngon",
+      "available": 89,
       "id": 3
+    },
+    {
+      "name": "èerer",
+      "destination": "bgbgbgb",
+      "duration": "556gr",
+      "price": 595959,
+      "description": "nogn",
+      "available": 89,
+      "id": 4
     }
   ],
   "users": [
@@ -26,6 +35,12 @@
       "password": "$2a$10$Q4oZnwYUC/1L/l9zHdBFF.J.bnS3MZR9KlaCvJn9jiEMVySppycL.",
       "username": "khachoandz1",
       "id": 1
+    },
+    {
+      "email": "hoanmeo@gmail.com",
+      "password": "$2a$10$tkQEwBYcYL/R3hbsxj7tReey429o5N6d8Bq3bY8wUX3nDFZlfOVL.",
+      "username": "hoanmeo",
+      "id": 2
     }
   ]
 }

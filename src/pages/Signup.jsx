@@ -1,21 +1,33 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 const API = "http://localhost:3000";
 
 function Signup() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handle = (e) => {
     e.preventDefault();
-    axios.post(`${API}/register`, { username, email, password })
-      .then(() => {
-        toast.success("Đăng ký OK!");
-        window.location.href = "/signin";
+
+    axios
+      .post(`${API}/register`, { username, email, password })
+      .then(() => axios.post(`${API}/login`, { email, password }))
+      .then((res) => {
+        localStorage.setItem("token", res.data.accessToken);
+        toast.success("Đăng ký + lưu token thành công!");
+
+        // ✅ Điều hướng sang trang đăng nhập
+        navigate("/signin");
       })
-      .catch(() => toast.error("Lỗi rồi!"));
+      .catch(() => {
+        toast.error("Lỗi đăng ký hoặc đăng nhập!");
+      });
   };
 
   return (
@@ -32,6 +44,7 @@ function Signup() {
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
             required
           />
+
           <input
             type="email"
             placeholder="Email"
@@ -40,6 +53,7 @@ function Signup() {
             className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
             required
           />
+
           <input
             type="password"
             placeholder="Mật khẩu"
@@ -58,9 +72,13 @@ function Signup() {
         </form>
 
         <p className="text-center mt-6">
-          Đã có tài khoản? <a href="/signin" className="text-blue-600 font-bold">Đăng nhập</a>
+          Đã có tài khoản?{" "}
+          <a href="/signin" className="text-blue-600 font-bold">
+            Đăng nhập
+          </a>
         </p>
       </div>
+
       <Toaster position="top-center" />
     </div>
   );

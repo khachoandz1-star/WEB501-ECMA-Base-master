@@ -43,9 +43,12 @@ function App() {
         <p className="text-lg text-gray-600">Ứng dụng quản lý dữ liệu</p>
 
         <Routes>
+          <Route>
           <Route path="/list" element={<List />} />
           <Route path="/add" element={<Add/>} />
           <Route path="/edit/:id" element={<Edit/>} />  {/*Thêm id*/}
+          </Route>
+         
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
 
