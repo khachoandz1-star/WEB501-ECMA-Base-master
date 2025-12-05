@@ -5,7 +5,7 @@ import Add from "./pages/Add";
 import Edit from "./pages/Edit";
 import Signup from "./pages/Signup";
 import Signin from "./pages/Signin";
-import AdminLayout from "./layouts/AdminLayout";   // 👈 nhớ import
+import AdminLayout from "./layout/AdminLayout";
 
 function App() {
   return (
